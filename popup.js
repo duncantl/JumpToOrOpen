@@ -23,19 +23,11 @@ function jumpToTabByURL(url, exact)
 		    
 		})
 	    })
-	    if(!found) {
-		alert("creating tab for " + url);
+	    if(!found) 
 		browser.tabs.create({ url: url}) ;
-	    }
+
 	},
         err => console.log("error: "+ err));
-
-
-    // p.then( () => { if(!done) browser.tabs.create({ url: url}) },  err => console.log("error: " + error));
-//    if(found == false) {
-//	console.log("didn't find tab so creating one");
-//	browser.tabs.create({ url: url}) ;
-//    }
 }
 
 
