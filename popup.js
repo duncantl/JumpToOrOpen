@@ -50,9 +50,14 @@ function showTab2(tab, window)
 
 
 
+// Previously used approach of 
+// var anchors = document.getElementsByTagName("a");
+// loop:
+//    a.addEventListener('click', function(ev) { jumpToTabByURL(a.href, false); ev.stopImmediatePropagation(); return(false);} )
+// but this would not override the regular creation of a new tab from the regular click event.
+
 // https://stackoverflow.com/questions/1760096/override-default-behaviour-for-link-a-objects-in-javascript
 // https://javascript.info/bubbling-and-capturing
-if(true) {
 document.onclick = function (e) {
   e = e ||  window.event;
   var element = e.target || e.srcElement;
@@ -62,15 +67,3 @@ document.onclick = function (e) {
     return false; // prevent default action and stop event propagation
   }
 };
-} else {
-
-var anchors = document.getElementsByTagName("a");
-console.log( anchors + " anchors" ); // anchors.length + " anchors");
- for(let a of anchors)
-//for( let i = 0 ; i < anchors.length; i++)
-{
-//    let a = anchors[i];
-    a.style.color = "red";
-    a.addEventListener('click', function(ev) { jumpToTabByURL(a.href, false); ev.stopImmediatePropagation(); return(false);} )
-}
-}
