@@ -1,8 +1,9 @@
 function jumpToTabByURL(url, exact)
 {
+//    alert("jumpToTabByURL " + url + " exact = " + exact );
     console.log("looking for " + url + " " + exact);
     var found = false;
-    var pr = browser.windows.getAll({populate: true});
+    var pr = browser.windows.getAll({ populate: true });
     pr.then(
 	function(windowList) {
 	    windowList.forEach(function(window) {
@@ -22,8 +23,10 @@ function jumpToTabByURL(url, exact)
 		    
 		})
 	    })
-	    if(!found)
+	    if(!found) {
+		alert("creating tab for " + url);
 		browser.tabs.create({ url: url}) ;
+	    }
 	},
         err => console.log("error: "+ err));
 
@@ -51,4 +54,31 @@ function showTab2(tab, window)
 
 
 
-document.getElementById('tabURL').addEventListener('change', function(ev) { jumpToTabByURL(ev.target.value, false); } );
+// document.getElementById('tabURL').addEventListener('change', function(ev) { jumpToTabByURL(ev.target.value, false); } );
+
+
+
+// https://stackoverflow.com/questions/1760096/override-default-behaviour-for-link-a-objects-in-javascript
+// https://javascript.info/bubbling-and-capturing
+if(true) {
+document.onclick = function (e) {
+  e = e ||  window.event;
+  var element = e.target || e.srcElement;
+
+  if (element.tagName == 'A') {
+      jumpToTabByURL(element.href, false)
+    return false; // prevent default action and stop event propagation
+  }
+};
+} else {
+
+var anchors = document.getElementsByTagName("a");
+console.log( anchors + " anchors" ); // anchors.length + " anchors");
+ for(let a of anchors)
+//for( let i = 0 ; i < anchors.length; i++)
+{
+//    let a = anchors[i];
+    a.style.color = "red";
+    a.addEventListener('click', function(ev) { jumpToTabByURL(a.href, false); ev.stopImmediatePropagation(); return(false);} )
+}
+}
