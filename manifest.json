@@ -9,14 +9,15 @@
 
 	"permissions": [
 	    "tabs",
-	    "storage",
+	    "activeTab",
+//	    "storage",
 	    "scripting"
 	],
 
-//      "background": {
-//          "scripts": [],  
-//          "persistent": true
-//      },
+      "background": {
+          "scripts": ["hotkeys.js", "functions.js"],  
+          "persistent": true
+      },
 
        "content_scripts": [
            {  "matches": [ "*://*/" ],
@@ -34,5 +35,49 @@
 	      "id": "oasisgh@gs.ucdavis.edu"
 //              "update_url": "https://www.stat.ucdavis.edu/~duncan/FirefoxExtensions/oasisgradhub.json"
            }
-	}
+	},
+
+       "commands": {
+	   "gradProgs": {
+	       "suggested_key": {
+		   "default": "MacCtrl+G"
+	       }
+	   },
+	   "oasis": {
+	       "suggested_key": {
+		   "default": "MacCtrl+O"
+	       }
+	   }	,
+	   "prm": {
+	       "suggested_key": {
+		   "default": "MacCtrl+P"
+	       }
+	   }	,
+	   "gmail": {
+	       "suggested_key": {
+		   "default": "MacCtrl+E"
+	       }
+	   },
+	   "calendar": {
+	       "suggested_key": {
+		   // C doesn't work
+		   "default": "MacCtrl+L" 
+	       }
+	   },
+	   "nytimes": {
+	       "suggested_key": {
+		   "default": "MacCtrl+Y"
+	       }
+	   },
+	   "washpost": {
+	       "suggested_key": {
+		   "default": "MacCtrl+W"
+	       }
+	   },
+	   "hackerNews": {
+	       "suggested_key": {
+		   "default": "MacCtrl+H"
+	       }
+	   }
+       }
 }
