@@ -3,7 +3,7 @@
 
 	"name": "JumpToOrOpen",
 	"description": "Menu of common pages that I want to jump to the existing open tab, or if it doesn't exist, then open it in a new tab",
-	"version": "0.3.0",
+	"version": "0.3.1",
 
 	"homepage_url": "https://github.com/duncantl/JumpToOrOpen",
 
