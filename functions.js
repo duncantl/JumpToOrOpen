@@ -3,11 +3,12 @@ var log = false;
 function jumpToTabByURL(url, exact, force)
 {
     // alert("jumpToTabByURL " + url + " exact = " + exact );
-    if(log)  console.log("looking for " + url + " " + exact);
     if(force === undefined)
 	force = true;
     if(exact === undefined)
 	exact = true;    
+
+    if(log)  console.log("looking for " + url + " exact = " + exact + " force = " + force);
     
     var found = false;
     var pr = browser.windows.getAll({ populate: true });
@@ -24,7 +25,7 @@ function jumpToTabByURL(url, exact, force)
 			ok = exact ? tab.title == url : tab.title.match(url) !== null;
 		    
 		    if(ok) {
-			// console.log("found tab for " + url + " " + tab);
+			if(log) console.log("found tab for " + url + " " + tab);
 			// alert("found existing tab " + tab.url);
 			showTab2(tab, window);
 			found = true;
@@ -35,7 +36,7 @@ function jumpToTabByURL(url, exact, force)
 		})
 	    })
 	    if(!found && force) {
-		// alert("couldn't find existing tab for " + url + " in " + ctr + " existing tabs");
+		if(log) console.log("couldn't find existing tab for " + url + " in " + ctr + " existing tabs");
 		browser.tabs.create({ url: url}) ;
 	    }
 
