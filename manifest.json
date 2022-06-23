@@ -3,7 +3,7 @@
 
 	"name": "JumpToOrOpen",
 	"description": "Menu of common pages that I want to jump to the existing open tab, or if it doesn't exist, then open it in a new tab",
-	"version": "0.1.0",
+	"version": "0.3.0",
 
 	"homepage_url": "https://github.com/duncantl/JumpToOrOpen",
 
@@ -13,13 +13,26 @@
 	    "scripting"
 	],
 
-	"background": {
-	    "scripts": [],
-	    "persistent": true
-	},
+//      "background": {
+//          "scripts": [],  
+//          "persistent": true
+//      },
+
+       "content_scripts": [
+           {  "matches": [ "*://*/" ],
+	      "js": ["functions.js", "catchAllLinks.js"]
+	   }
+       ],
 
        "browser_action": {
-	   "default_icon": "images/triangle-small-4-01.png",
+	   "default_icon": "images/icons8-arrow-64.png",
 	   "default_popup": "popup.html"
-       }
+       },
+
+	"browser_specific_settings": {
+	  "gecko": {
+	      "id": "oasisgh@gs.ucdavis.edu"
+//              "update_url": "https://www.stat.ucdavis.edu/~duncan/FirefoxExtensions/oasisgradhub.json"
+           }
+	}
 }
